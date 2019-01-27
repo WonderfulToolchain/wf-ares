@@ -1,9 +1,8 @@
 #include "higan.hpp"
-Video video;
-Audio audio;
-Input input;
-shared_pointer<higan::Interface> emulator;
-vector<shared_pointer<higan::Interface>> emulators;
+unique_pointer<Video> video;
+unique_pointer<Audio> audio;
+unique_pointer<Input> input;
+higan::Interface* emulator = nullptr;
 
 auto locate(string name) -> string {
   string location = {Path::program(), name};
@@ -14,14 +13,12 @@ auto locate(string name) -> string {
 }
 
 auto hiro::initialize() -> void {
+  Application::setName("higan");
+  Application::setScreenSaver(false);
 }
 
 #include <nall/main.hpp>
 auto nall::main(Arguments arguments) -> void {
-  Application::setName("higan");
-  Application::setScreenSaver(false);
-  settings.load();
-  settings.save();  //creates settings file if it does not exist
-  program.construct(arguments);
+  new Program(arguments);
   Application::run();
 }
