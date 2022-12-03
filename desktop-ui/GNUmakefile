@@ -1,4 +1,4 @@
-name := ares
+name := wf-ares
 build := optimized
 threaded := true
 openmp := false

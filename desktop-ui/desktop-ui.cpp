@@ -39,7 +39,11 @@ auto locate(const string& name) -> string {
 
 #include <nall/main.hpp>
 auto nall::main(Arguments arguments) -> void {
+#ifdef WF_ARES // branding
+  Application::setName("wf-ares");
+#else
   Application::setName("ares");
+#endif
   Application::setScreenSaver(false);
 
   mia::setHomeLocation([]() -> string {
@@ -67,7 +71,11 @@ auto nall::main(Arguments arguments) -> void {
   Emulator::construct();
 
   if(arguments.take("--help")) {
+#ifdef WF_ARES // branding
+    print("Usage: wf-ares [OPTIONS]... game\n\n");
+#else
     print("Usage: ares [OPTIONS]... game\n\n");
+#endif
     print("Options:\n");
     print("  --help               Displays available options and exit\n");
     print("  --fullscreen         Start in full screen mode\n");
