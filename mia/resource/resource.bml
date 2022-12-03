@@ -1,11 +1,11 @@
 namespace name=Resource
   namespace name=GameBoy
-    binary name=BootDMG0 file="../Firmware/Game Boy/boot.dmg-0.rom"
-    binary name=BootDMG1 file="../Firmware/Game Boy/boot.dmg-1.rom"
-    binary name=BootMGB file="../Firmware/Game Boy/boot.mgb.rom"
+    binary name=BootDMG0 file="../../boot/SameBoy/build/bin/BootROMs/dmg_boot.bin"
+    binary name=BootDMG1 file="../../boot/SameBoy/build/bin/BootROMs/dmg_boot.bin"
+    binary name=BootMGB file="../../boot/SameBoy/build/bin/BootROMs/mgb_boot.bin"
   namespace name=GameBoyColor
-    binary name=BootCGB0 file="../Firmware/Game Boy Color/boot.cgb-0.rom"
-    binary name=BootCGB1 file="../Firmware/Game Boy Color/boot.cgb-1.rom"
+    binary name=BootCGB0 file="../../boot/SameBoy/build/bin/BootROMs/cgb0_boot.bin"
+    binary name=BootCGB1 file="../../boot/SameBoy/build/bin/BootROMs/cgb_boot.bin"
   namespace name=MegaDrive
     binary name=TMSS file="../Firmware/Mega Drive/tmss.rom"
     binary name=SVP file="../Firmware/Mega Drive/svp.rom"

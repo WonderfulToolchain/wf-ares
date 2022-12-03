@@ -6,9 +6,17 @@
 
   * Removal of all "blobs" bundled with upstream Ares, replacing with open-source equivalents where available.
 
-To compile wf-ares, before running `make`, you should run the following command to generate `resource.cpp` files:
+To compile wf-ares, before running `make`, you should run the following commands to build open-source blob replacements and generate `resource.cpp` files:
 
+    cd boot
+    ./fetch.sh
+    ./build.sh all
+    cd ..
     scripts/rebuild-resources.sh
+
+The following additional software is required:
+
+  * **RGBDS** (GB/GBC boot images).
 
 The original README follows.
 

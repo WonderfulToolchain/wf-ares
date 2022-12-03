@@ -4,12 +4,22 @@ auto Cartridge::read(u32 cycle, n16 address, n8 data) -> n8 {
   }
 
   if(bootromEnable) {
-    if(address >= 0x0000 && address <= 0x00ff && cycle == 2) {
-      return system.bootROM.read(address);
-    }
+    // wf-ares: support SameBoy's boot ROM format
+#ifdef WF_ARES
+    if(system.bootROM.size() == 2304 && Model::GameBoyColor()) {
+      if(address >= 0x0000 && address <= 0x08ff && (address & 0xFF00) != 0x100 && cycle == 2) {
+        return system.bootROM.read(address);
+      }
+    } else
+#endif
+    {
+      if(address >= 0x0000 && address <= 0x00ff && cycle == 2) {
+        return system.bootROM.read(address);
+      }
 
-    if(address >= 0x0200 && address <= 0x08ff && cycle == 2 && Model::GameBoyColor()) {
-      return system.bootROM.read(address - 0x100);
+      if(address >= 0x0200 && address <= 0x08ff && cycle == 2 && Model::GameBoyColor()) {
+        return system.bootROM.read(address - 0x100);
+      }
     }
   }
 

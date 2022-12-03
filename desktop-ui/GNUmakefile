@@ -37,9 +37,9 @@ hiro.resource := resource/ares.rc
 include $(hiro.path)/GNUmakefile
 
 profile := performance
-cores := a26 fc sg ms pce
+cores := a26 fc sg ms pce gb
 # wf-ares: the following cores currently depend or may depend on blobs
-#cores += sfc n64 ps1 md msx ng cv gb gba ws ngp
+#cores += sfc n64 ps1 md msx ng cv gba ws ngp
 #cores += saturn
 
 ares.path := ../ares

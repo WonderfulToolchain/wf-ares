@@ -121,7 +121,10 @@ auto System::power(bool reset) -> void {
   }
 
   if(GameBoy::Model::GameBoyColor()) {
+    // wf-ares: don't pre-allocate; SameBoy-format ROMs are 2304 bytes in size
+#ifndef WF_ARES
     bootROM.allocate(2048);
+#endif
     if(cpu.version->latch() == "CPU CGB"   ) name = "boot.cgb-0.rom";
     if(cpu.version->latch() == "CPU CGB A" ) name = "boot.cgb-1.rom";
     if(cpu.version->latch() == "CPU CGB B" ) name = "boot.cgb-1.rom";
@@ -133,6 +136,8 @@ auto System::power(bool reset) -> void {
   if(auto fp = pak->read(!GameBoy::Model::SuperGameBoy() ? "boot.rom" : "sm83.boot.rom")) {
     bootROM.load(fp);
 
+    // wf-ares: this won't work with deblobbed ROMs
+#ifndef WF_ARES
     if(fastBoot->latch()) {
       if(name == "boot.dmg-1.rom") {
         //skip the first 0x60 loop iterations (~4 seconds) and disable scrolling
@@ -144,6 +149,7 @@ auto System::power(bool reset) -> void {
       }
       //todo: add fast boot patches for other boot ROMs
     }
+#endif
   }
 
   cartridge.power();
