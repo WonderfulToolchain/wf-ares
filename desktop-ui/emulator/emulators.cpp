@@ -18,7 +18,9 @@ namespace ares::Atari2600 {
     auto load(Node::System& node, string name) -> bool;
   }
   #include "famicom.cpp"
+# ifndef WF_ARES
   #include "famicom-disk-system.cpp"
+# endif
 #endif
 
 #ifdef CORE_GB
@@ -93,9 +95,13 @@ namespace ares::Atari2600 {
     auto option(string name, string value) -> bool;
   }
   #include "pc-engine.cpp"
+# ifndef WF_ARES
   #include "pc-engine-cd.cpp"
+# endif
   #include "supergrafx.cpp"
+# ifndef WF_ARES
   #include "supergrafx-cd.cpp"
+# endif
 #endif
 
 #ifdef CORE_PS1
@@ -158,14 +164,20 @@ auto Emulator::construct() -> void {
 
   #ifdef CORE_PCE
   emulators.append(new PCEngine);
+  # ifndef WF_ARES
   emulators.append(new PCEngineCD);
+  # endif
   emulators.append(new SuperGrafx);
+  # ifndef WF_ARES
   emulators.append(new SuperGrafxCD);
+  # endif
   #endif
 
   #ifdef CORE_FC
   emulators.append(new Famicom);
+  # ifndef WF_ARES
   emulators.append(new FamicomDiskSystem);
+  # endif
   #endif
 
   #ifdef CORE_SFC

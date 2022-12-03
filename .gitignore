@@ -4,3 +4,5 @@ obj-amd64/
 obj-arm64/
 out-amd64/
 out-arm64/
+**/resource.cpp
+**/resource.hpp

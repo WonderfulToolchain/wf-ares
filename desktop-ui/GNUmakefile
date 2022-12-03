@@ -7,6 +7,7 @@ mame.rdp := true
 local := true
 lto := false
 flags += -I. -I.. -I../ares -I../thirdparty -DMIA_LIBRARY
+flags += -DWF_ARES
 
 nall.path := ../nall
 include $(nall.path)/GNUmakefile
@@ -36,7 +37,9 @@ hiro.resource := resource/ares.rc
 include $(hiro.path)/GNUmakefile
 
 profile := performance
-cores := a26 fc sfc n64 sg ms md ps1 pce ng msx cv gb gba ws ngp
+cores := a26 fc sg ms pce
+# wf-ares: the following cores currently depend or may depend on blobs
+#cores += sfc n64 ps1 md msx ng cv gb gba ws ngp
 #cores += saturn
 
 ares.path := ../ares

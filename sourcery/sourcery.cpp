@@ -45,11 +45,14 @@ auto Sourcery::parse(Markup::Node& root) -> void {
       source.print("}\n");
     } else if(node.name() == "binary") {
       string filename{pathname, node["file"].text()};
+      // wf-ares: instead of skipping missing files, provide 0-byte replacements to allow existing code to compile
+      vector<u8> buffer;
       if(!file::exists(filename)) {
         print("warning: binary file ", node["file"].text(), " not found\n");
-        continue;
+        buffer.append(0);
+      } else {
+        buffer = file::read(filename);
       }
-      auto buffer = file::read(filename);
       header.print("extern const unsigned char ", node["name"].text(), "[", buffer.size(), "];\n");
       source.print("const unsigned char ", node["name"].text(), "[", buffer.size(), "] = {\n");
       buffer.foreach([&](uint offset, int data) {

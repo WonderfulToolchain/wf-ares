@@ -1,6 +1,18 @@
-![ares logo](https://github.com/ares-emulator/ares/blob/master/ares/ares/resource/logo.png)
+# wf-ares
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://github.com/higan-emu/ares/blob/master/LICENSE)
+
+**wf-ares** is a fork of [Ares](https://github.com/ares-emu/ares/). Its primary changes are as follows:
+
+  * Removal of all "blobs" bundled with upstream Ares, replacing with open-source equivalents where available.
+
+To compile wf-ares, before running `make`, you should run the following command to generate `resource.cpp` files:
+
+    scripts/rebuild-resources.sh
+
+The original README follows.
+
+## Original README
 
 **ares** is a multi-system emulator that began development on October 14th, 2004.
 It is a descendent of [higan](https://github.com/higan-emu/higan) and [bsnes](https://github.com/bsnes-emu/bsnes/), and focuses on accuracy and preservation.
